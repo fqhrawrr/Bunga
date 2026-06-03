@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:black;
+}
+
+/* HALAMAN AWAL */
+
+#intro{
+    width:100%;
+    height:100vh;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+/* BINTANG */
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.2;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+/* JUDUL */
+
+#typing{
+    font-family:'Dancing Script',cursive;
+    font-size:55px;
+    color:#214b9f;
+
+    text-shadow:
+    0 0 10px #214b9f,
+    0 0 20px #214b9f,
+    0 0 40px #214b9f;
+
+    text-align:center;
+    margin-bottom:30px;
+}
+
+/* TOMBOL */
+
+#openBtn{
+    opacity:0;
+    padding:12px 35px;
+    border:1px solid white;
+    border-radius:30px;
+    background:transparent;
+    color:white;
+    font-size:18px;
+    letter-spacing:2px;
+    cursor:pointer;
+    transition:1s;
+}
+
+#openBtn:hover{
+    background:white;
+    color:black;
+}
+
+/* VIDEO */
+
+#videoPage{
+    display:none;
+    width:100%;
+    height:100vh;
+    background:black;
+}
+
+video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+
+    <h1 id="typing"></h1>
+
+    <button id="openBtn" onclick="openVideo()">
+        Open ✨
+    </button>
+
+</div>
+
+<div id="videoPage">
+
+    <video autoplay controls playsinline>
+        <source src="https://raw.githubusercontent.com/fqhrawrr/Bunga/main/copy_8B74E191-235B-4B4C-8F20-2E17B144E859.mov" type="video/mp4">
+    </video>
+
+</div>
+
+<script>
+
+/* BINTANG */
+
+for(let i=0;i<120;i++){
+
+    let star=document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left=Math.random()*100+"vw";
+    star.style.top=Math.random()*100+"vh";
+
+    star.style.animationDuration=
+    (Math.random()*3+1)+"s";
+
+    document.body.appendChild(star);
+}
+
+/* TYPING */
+
+const text="I have something...";
+let index=0;
+
+function typing(){
+
+    if(index < text.length){
+
+        document.getElementById("typing").innerHTML += text.charAt(index);
+
+        index++;
+
+        setTimeout(typing,120);
+
+    }else{
+
+        document.getElementById("openBtn").style.opacity="1";
+    }
+}
+
+typing();
+
+/* OPEN */
+
+function openVideo(){
+
+    document.getElementById("intro").style.transition="1.2s";
+    document.getElementById("intro").style.opacity="0";
+
+    setTimeout(()=>{
+
+        document.getElementById("intro").style.display="none";
+
+        document.getElementById("videoPage").style.display="block";
+
+    },1200);
+}
+
+</script>
+
+</body>
+</html>
